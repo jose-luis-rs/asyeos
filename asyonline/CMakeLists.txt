@@ -32,6 +32,6 @@ CHANGE_FILE_EXTENSION(*.cxx *.h HEADERS "${SRCS}")
 set(LINKDEF R3BAsyOnlineLinkDef.h)
 set(LIBRARY_NAME R3BAsyOnline)
 set(DEPENDENCIES
-    Spectrum Base FairTools R3BBase R3BData)
+    Spectrum Base FairTools R3BBase R3BData R3BAsyData)
 
 GENERATE_LIBRARY()
