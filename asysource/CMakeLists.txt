@@ -42,7 +42,7 @@ Set(HEADERS ${STRUCT_HEADERS} ${HEADERS})
 
 set(LINKDEF R3BAsySourceLinkDef.h)
 set(DEPENDENCIES
-    R3BBase Base R3BAsyData R3Bsource ${ucesb_LIBRARY_SHARED} FairTools)
+	R3BBase Base R3BAsyData R3BSource ${ucesb_LIBRARY_SHARED} FairTools)
 set(LIBRARY_NAME R3BAsySource)
 
 GENERATE_LIBRARY()
