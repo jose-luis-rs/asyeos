@@ -8,15 +8,15 @@
 # another cmake executable to run.The same process will walk through
 # the project's entire directory structure.
 
-Set(R3BASY_SOURCE_DIR ${R3BROOT_SOURCE_DIR}/asyeos)
+set(R3BASY_SOURCE_DIR ${R3BROOT_SOURCE_DIR}/asyeos)
 message(STATUS "${BBlue}ASYEOS project was FOUND${CR} ")
 message("    - ${Cyan}ASYEOS_DIR${CR} = ${BGreen}${R3BASY_SOURCE_DIR}${CR}")
 
 # ASYEOS specific
-if(WITH_UCESB) 
-   add_subdirectory(asysource) 
+add_subdirectory(asydata)
+if(WITH_UCESB)
+    add_subdirectory(asysource)
 endif(WITH_UCESB)
 add_subdirectory(chimera)
 add_subdirectory(krab)
-add_subdirectory(asydata)
 add_subdirectory(asyonline)
