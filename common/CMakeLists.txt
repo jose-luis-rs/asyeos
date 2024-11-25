@@ -1,4 +1,4 @@
-# Create a library called  "libR3BAsyChim" which includes the source files given in
+# Create a library called  "libR3BAsyCommon" which includes the source files given in
 # the array.
 # The extension is already found.  Any number of sources could be listed here.
 
@@ -10,26 +10,26 @@ set(INCLUDE_DIRECTORIES
     ${R3BROOT_SOURCE_DIR}/tracking
     ${R3BASY_SOURCE_DIR}/asydata
     ${R3BASY_SOURCE_DIR}/asydata/chimeraData
-    ${R3BASY_SOURCE_DIR}/chimera
-    ${R3BASY_SOURCE_DIR}/chimera/sim
-    ${R3BASY_SOURCE_DIR}/chimera/pars
-    ${R3BASY_SOURCE_DIR}/chimera/ana
+    ${R3BASY_SOURCE_DIR}/asydata/krabData
+    ${R3BASY_SOURCE_DIR}/common
+    ${R3BASY_SOURCE_DIR}/common/ana
     )
 
-    file(
-    GLOB 
-    SRCS 
-    ./sim/*.cxx  
-    ./pars/*.cxx 
-    ./ana/*.cxx )
 
-    change_file_extension(*.cxx *.h HEADERS "${SRCS}")
-    
-    add_library_with_dictionary(
+set(SRCS
+##Put here your sourcefiles
+    ana/R3BAsyCommonAna.cxx
+)
+
+# fill list of header files from list of source files
+# by exchanging the file extension
+change_file_extension(*.cxx *.h HEADERS "${SRCS}")
+
+add_library_with_dictionary(
     LIBNAME
-    R3BAsyChim
+    R3BAsyCommon
     LINKDEF
-    R3BAsyChimLinkDef.h
+    R3BAsyCommonLinkDef.h
     HEADERS
     ${HEADERS}
     SRCS
@@ -37,9 +37,6 @@ set(INCLUDE_DIRECTORIES
     INCLUDEDIRS
     ${INCLUDE_DIRECTORIES}
     DEPENDENCIES
-    R3BData 
     R3BBase 
-    Core 
-    m)
-
-
+    R3BData 
+    R3BAsyData)

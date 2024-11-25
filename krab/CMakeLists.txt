@@ -2,18 +2,30 @@
 # the array.
 # The extension is already found.  Any number of sources could be listed here.
 
-file(
-    GLOB
-    SRCS
-    ./sim/*.cxx
-    ./pars/*.cxx
-    ./ana/*.cxx)
+set(INCLUDE_DIRECTORIES
+    #cmake-format: sortable
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${R3BROOT_SOURCE_DIR}/r3bbase
+    ${R3BROOT_SOURCE_DIR}/r3bdata
+    ${R3BROOT_SOURCE_DIR}/tracking
+    ${R3BASY_SOURCE_DIR}/asydata
+    ${R3BASY_SOURCE_DIR}/asydata/krabData
+    ${R3BASY_SOURCE_DIR}/krab
+    ${R3BASY_SOURCE_DIR}/krab/sim
+    ${R3BASY_SOURCE_DIR}/krab/pars
+    ${R3BASY_SOURCE_DIR}/krab/ana
+    )
 
-# fill list of header files from list of source files
-# by exchanging the file extension
-change_file_extension(*.cxx *.h HEADERS "${SRCS}")
+    file(
+    GLOB 
+    SRCS 
+    ./sim/*.cxx  
+    ./pars/*.cxx 
+    ./ana/*.cxx )
 
-add_library_with_dictionary(
+    change_file_extension(*.cxx *.h HEADERS "${SRCS}")
+    
+    add_library_with_dictionary(
     LIBNAME
     R3BAsyKrab
     LINKDEF
@@ -23,10 +35,9 @@ add_library_with_dictionary(
     SRCS
     ${SRCS}
     INCLUDEDIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/sim
-    ${CMAKE_CURRENT_SOURCE_DIR}/pars
-    ${CMAKE_CURRENT_SOURCE_DIR}/ana
+    ${INCLUDE_DIRECTORIES}
     DEPENDENCIES
-    R3BAsyData
-    R3BTracking)
+    R3BData 
+    R3BBase 
+    Core 
+    m)

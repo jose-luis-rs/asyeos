@@ -105,6 +105,8 @@ class R3BAsyKrabDoArray : public FairTask {
   TRandom* rr;
   TCanvas* c_DRP12_mgt10;
   TH1F* fh1_DRP12_mgt10;
+  TH1F* fh1_DRP12_mgt20;
+  TH1F* fh1_DRP12_mgt40;
 
   R3BAsyKrabArrayData* AddHitData(UInt_t Multi, Double_t RP, UInt_t* Ring,
                                   UInt_t* Sector, Float_t* Phi);

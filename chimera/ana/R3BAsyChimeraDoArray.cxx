@@ -143,40 +143,40 @@ void R3BAsyChimeraDoArray::Exec(Option_t* option) {
       if (!hitmapped) continue;
       //      std::cout << "* temp_multi=" << temp_multi << std::endl;
       //      std::cout << "* iDet=" << hitmapped->GetDetectorId() << std::endl;
-      if (hitmapped->GetEnergy() > 0 || hitmapped->GetTime() > 0) {
-        iDet[iMulti] = hitmapped->GetDetectorId();
-        iSide[iMulti] = hitmapped->GetSideId();
-        iStrip[iMulti] = hitmapped->GetStripId();
-        iRawEnergy[iMulti] = hitmapped->GetEnergy();
-        iRawTime[iMulti] = hitmapped->GetTime();
-        iMulti++;
+      /*11102024
+            if (hitmapped->GetEnergy() > 0 || hitmapped->GetTime() > 0) {
+              iDet[iMulti] = hitmapped->GetDetectorId();
+              iSide[iMulti] = hitmapped->GetSideId();
+              iStrip[iMulti] = hitmapped->GetStripId();
+              iRawEnergy[iMulti] = hitmapped->GetEnergy();
+              iRawTime[iMulti] = hitmapped->GetTime();
+              iMulti++;
 
-        if (hitmapped->GetDetectorId() == 1 && hitmapped->GetSideId() == 1) {
-          int strip = hitmapped->GetStripId();
-          if (strip != 4 && strip != 16 && strip != 19 && strip != 31) {
-            if (hitmapped->GetEnergy() > 0) E1F[strip] = hitmapped->GetEnergy();
-            if (hitmapped->GetTime() > 0) T1F[strip] = hitmapped->GetEnergy();
-          }
-        }
-        if (hitmapped->GetDetectorId() == 1 && hitmapped->GetSideId() == 2) {
-          int strip = hitmapped->GetStripId();
-          if (strip != 29) {
-            if (hitmapped->GetEnergy() > 0) E1B[strip] = hitmapped->GetEnergy();
-            if (hitmapped->GetTime() > 0) T1B[strip] = hitmapped->GetEnergy();
-          }
-        }
-        if (hitmapped->GetDetectorId() == 2 && hitmapped->GetSideId() == 1) {
-          int strip = hitmapped->GetStripId();
-          if (hitmapped->GetEnergy() > 0) E2F[strip] = hitmapped->GetEnergy();
-          if (hitmapped->GetTime() > 0) T2F[strip] = hitmapped->GetEnergy();
-        }
+              if (hitmapped->GetDetectorId() == 1 && hitmapped->GetSideId() ==
+         1) { int strip = hitmapped->GetStripId(); if (strip != 4 && strip != 16
+         && strip != 19 && strip != 31) { if (hitmapped->GetEnergy() > 0)
+         E1F[strip] = hitmapped->GetEnergy(); if (hitmapped->GetTime() > 0)
+         T1F[strip] = hitmapped->GetEnergy();
+                }
+              }
+              if (hitmapped->GetDetectorId() == 1 && hitmapped->GetSideId() ==
+         2) { int strip = hitmapped->GetStripId(); if (strip != 29) { if
+         (hitmapped->GetEnergy() > 0) E1B[strip] = hitmapped->GetEnergy(); if
+         (hitmapped->GetTime() > 0) T1B[strip] = hitmapped->GetEnergy();
+                }
+              }
+              if (hitmapped->GetDetectorId() == 2 && hitmapped->GetSideId() ==
+         1) { int strip = hitmapped->GetStripId(); if (hitmapped->GetEnergy() >
+         0) E2F[strip] = hitmapped->GetEnergy(); if (hitmapped->GetTime() > 0)
+         T2F[strip] = hitmapped->GetEnergy();
+              }
 
-        if (hitmapped->GetDetectorId() == 3 && hitmapped->GetSideId() == 1) {
-          int strip = hitmapped->GetStripId();
-          if (hitmapped->GetEnergy() > 0) E3F[strip] = hitmapped->GetEnergy();
-          if (hitmapped->GetTime() > 0) T3F[strip] = hitmapped->GetEnergy();
-        }
-      }
+              if (hitmapped->GetDetectorId() == 3 && hitmapped->GetSideId() ==
+         1) { int strip = hitmapped->GetStripId(); if (hitmapped->GetEnergy() >
+         0) E3F[strip] = hitmapped->GetEnergy(); if (hitmapped->GetTime() > 0)
+         T3F[strip] = hitmapped->GetEnergy();
+              }
+            }11102024*/
     }
     //    if(iMulti>0)AddHitData(iMulti/*, iDet, iSide, iStrip, iRawEnergy,
     //    iRawTime*/);
@@ -307,8 +307,8 @@ R3BAsyChimeraArrayData* R3BAsyChimeraDoArray::AddHitData(
     UInt_t* RawTime, UInt_t multiE12, UInt_t multEFB1) {
   TClonesArray& clref = *fChimeraArrayData;
   Int_t size = clref.GetEntriesFast();
-  return new (clref[size]) R3BAsyChimeraArrayData(
-      multi, Det, Side, Strip, RawEnergy, RawTime, multiE12, multEFB1);
+  // 11102024  return new (clref[size]) R3BAsyChimeraArrayData(multi, Det, Side,
+  // Strip, RawEnergy, RawTime, multiE12, multEFB1);
 }
 
 ClassImp(R3BAsyChimeraDoArray)

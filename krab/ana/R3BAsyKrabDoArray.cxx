@@ -97,10 +97,17 @@ InitStatus R3BAsyKrabDoArray::Init() {
   nn = 0;
   rr = new TRandom();
   fh1_DRP12_mgt10 = new TH1F("fh1_DRP12_mgt10", "DRP12_mgt10", 60, -360., 360.);
+  fh1_DRP12_mgt20 = new TH1F("fh1_DRP12_mgt20", "DRP12_mgt20", 60, -360., 360.);
+  fh1_DRP12_mgt40 = new TH1F("fh1_DRP12_mgt40", "DRP12_mgt40", 60, -360., 360.);
   c_DRP12_mgt10 = new TCanvas("c_DRP12_mgt10", "DRP12_mgt10", 800, 800);
   c_DRP12_mgt10->Draw();
-  c_DRP12_mgt10->cd();
+  c_DRP12_mgt10->Divide(2, 2);
+  c_DRP12_mgt10->cd(1);
   fh1_DRP12_mgt10->Draw();
+  c_DRP12_mgt10->cd(2);
+  fh1_DRP12_mgt20->Draw();
+  c_DRP12_mgt10->cd(3);
+  fh1_DRP12_mgt40->Draw();
   return kSUCCESS;
 }
 
@@ -167,13 +174,15 @@ void R3BAsyKrabDoArray::Exec(Option_t* option) {
     iRP = -1000;
     AddHitData(0, iRP, 0, 0, 0);
   }
-  if (iMulti >= 16) {
+  if (iMulti >= 10) {
     iRP1 = TMath::ATan2(Qy1, Qx1) * TMath::RadToDeg();
     iRP2 = TMath::ATan2(Qy2, Qx2) * TMath::RadToDeg();
     DRP12 = iRP1 - iRP2;
     if (DRP12 < -180) DRP12 = DRP12 + 360;
     if (DRP12 > 180) DRP12 = DRP12 - 360;
     fh1_DRP12_mgt10->Fill(DRP12);
+    if (iMulti >= 20) fh1_DRP12_mgt20->Fill(DRP12);
+    if (iMulti >= 40) fh1_DRP12_mgt40->Fill(DRP12);
     // std::cout << iMulti1 << "  $$$  " << iMulti2 << std::endl;
   }
 
@@ -196,6 +205,8 @@ void R3BAsyKrabDoArray::Reset() {
 void R3BAsyKrabDoArray::FinishTask() {
   fh1_DRP12_mgt10->Fit("gaus", "", "", -90., 90.);
   fh1_DRP12_mgt10->Write();
+  fh1_DRP12_mgt20->Write();
+  fh1_DRP12_mgt40->Write();
 }
 
 // -----   Private method AddHitData -------------------------------------------

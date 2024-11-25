@@ -2,19 +2,31 @@
 # the array .
 # The extension is already found.  Any number of sources could be listed here.
 
+set(INCLUDE_DIRECTORIES
+    #cmake-format: sortable
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${R3BROOT_SOURCE_DIR}/r3bdata
+    ${R3BROOT_SOURCE_DIR}/r3bdata/califaData
+    ${R3BROOT_SOURCE_DIR}/r3bdata/neulandData
+    ${R3BASY_SOURCE_DIR}/asydata
+    ${R3BASY_SOURCE_DIR}/asydata/chimeraData
+    ${R3BASY_SOURCE_DIR}/asydata/krabData
+    )
+
 set(SRCS
     chimeraData/R3BAsyChimeraPoint.cxx
     chimeraData/R3BAsyChimeraHitData.cxx
     chimeraData/R3BAsyChimeraMappedData.cxx
     chimeraData/R3BAsyChimeraArrayData.cxx
+    chimeraData/R3BAsyChimeraPhysData.cxx
     krabData/R3BAsyKrabPoint.cxx
     krabData/R3BAsyKrabHitData.cxx
     krabData/R3BAsyKrabMappedData.cxx
-    krabData/R3BAsyKrabArrayData.cxx)
+    krabData/R3BAsyKrabArrayData.cxx
+    krabData/R3BAsyKrabPhysData.cxx
+   )
 
-# fill list of header files from list of source files
-# by exchanging the file extension
-change_file_extension(*.cxx *.h HEADERS "${SRCS}")
+ change_file_extension(*.cxx *.h HEADERS "${SRCS}")
 
 add_library_with_dictionary(
     LIBNAME
@@ -26,8 +38,10 @@ add_library_with_dictionary(
     SRCS
     ${SRCS}
     INCLUDEDIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${CMAKE_CURRENT_SOURCE_DIR}/chimeraData
-    ${CMAKE_CURRENT_SOURCE_DIR}/krabData
+    ${INCLUDE_DIRECTORIES}
     DEPENDENCIES
-    R3BData)
+    R3BData 
+    R3BBase 
+    Core 
+    m)
+ 

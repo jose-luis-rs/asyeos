@@ -2,7 +2,23 @@
 # the array .
 # The extension is already found.  Any number of sources could be listed here.
 
-set(SRCS R3BAsyChimeraOnlineSpectra.cxx)
+set(INCLUDE_DIRECTORIES
+    #cmake-format: sortable
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${R3BROOT_SOURCE_DIR}/r3bbase
+    ${R3BROOT_SOURCE_DIR}/r3bdata
+    ${R3BASY_SOURCE_DIR}/asydata
+    ${R3BASY_SOURCE_DIR}/asydata/chimeraData
+    ${R3BASY_SOURCE_DIR}/asydata/krabData
+    ${R3BASY_SOURCE_DIR}/asyonline
+    )
+
+
+set(SRCS
+    R3BAsyChimeraOnlineSpectra.cxx
+    R3BAsyKrabOnlineSpectra.cxx
+   )
+
 
 # fill list of header files from list of source files
 # by exchanging the file extension
@@ -18,6 +34,9 @@ add_library_with_dictionary(
     SRCS
     ${SRCS}
     INCLUDEDIRS
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${INCLUDE_DIRECTORIES}
     DEPENDENCIES
-    R3BAsyData)
+    R3BAsyData 
+    Spectrum 
+    R3BBase 
+    R3BData)
