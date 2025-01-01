@@ -20,7 +20,7 @@ Please ask your questions, request features, and report issues by [creating a gi
 ## Code Formatting
 The AsyEOS project (as part of R3BRoot) uses clang-format-15 to ensure a common code formatting. The script "apply-format.sh" can be used for this purpose: 
 ~~~bash
-source apply-format.sh
+bash apply-format.sh
 ~~~
 
 ## Step by Step Installation
@@ -29,11 +29,11 @@ source apply-format.sh
 
 First, you will need to install FairSoft, FairRoot and R3BRoot. For more details:
 
-1. Install [FairSoft](https://github.com/FairRootGroup/FairSoft)
+1. Install [FairSoft](https://github.com/FairRootGroup/FairSoft), required version Nov22p1 or later
 
-2. Install [FairRoot](http://fairroot.gsi.de)
+2. Install [FairRoot](https://github.com/FairRootGroup/FairRoot), required version 18.2.1 or later
 
-3. Install [R3BRoot](https://github.com/R3BRootGroup/R3BRoot)
+3. Install [R3BRoot](https://github.com/R3BRootGroup/R3BRoot), required version jun24 or later
 
 ### Installation of AsyEOS as part of R3BRoot
 
